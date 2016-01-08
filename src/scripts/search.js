@@ -1,6 +1,15 @@
+'use strict';
+
+const startCrawl = require('../lib/crawl').crawl;
+
 angular
   .module('Search',['ngMaterial', 'ngMessages'])
-  .controller('SearchCtrl', function($scope) {
+  .factory('crawl', [function() {
+    return function(search) {
+      return startCrawl(search.groupId, search.page, search.includes, search.excludes);
+    }
+  }])
+  .controller('SearchCtrl', ['$scope', 'crawl', function($scope, crawl) {
     $scope.search = {
       groupId: '',
       page: undefined,
@@ -9,7 +18,8 @@ angular
     };
 
     $scope.submit = function(search) {
-      // TODO: call service, switch router
       console.log(search);
+      // TODO: call service, switch router
+      crawl(search);
     }
-  });
+  }]);

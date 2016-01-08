@@ -1,27 +1,13 @@
 {
-  "name": "electron-quick-start",
+  "name": "search-douban-for-rent",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Search douban for rent",
   "main": "main.js",
   "scripts": {
     "start": "electron main.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/atom/electron-quick-start.git"
-  },
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial"
-  ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
-  "bugs": {
-    "url": "https://github.com/atom/electron-quick-start/issues"
-  },
-  "homepage": "https://github.com/atom/electron-quick-start#readme",
+  "author": "Joyee Cheung <joyeec9h3@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "electron-prebuilt": "^0.36.0"
   },
