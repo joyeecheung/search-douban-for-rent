@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>搜索结果</title>
+    <link rel="stylesheet" type="text/css" href="./node_modules/angular-material/angular-material.css">
+    <style type="text/css">
+      body, input, div {
+        font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB",STHeiti,"Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+      }
+      input {
+        font: inherit;
+      }
+
+      button {
+        color: white;
+      }
+
+      .tag-chips {
+        margin: 18px 0;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .app {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+    </style>
+    <script type="text/javascript" src="./node_modules/angular/angular.js"></script>
+
+    <script type="text/javascript" src="./node_modules/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-messages/angular-messages.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-material/angular-material.js"></script>
+  </head>
+  <body>
+    <div ng-controller="DemoCtrl" layout="column" ng-cloak="" class="app" ng-app="MyApp">
+      <section layout="row" flex>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
+          <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Sidenav Left</h1>
+          </md-toolbar>
+        </md-sidenav>
+        <md-content layout-padding> </md-content>
+      </section>
+
+    </div>
+  </body>
+</html>

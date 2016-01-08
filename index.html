@@ -26,7 +26,7 @@
 
       .app {
         max-width: 600px;
-        /*margin: 0 auto;*/
+        margin: 0 auto;
       }
 
     </style>
@@ -39,12 +39,6 @@
   </head>
   <body>
 <div ng-controller="DemoCtrl" layout="column" ng-cloak="" class="app" ng-app="MyApp">
-  <!-- <section layout="row" flex> -->
-<!--     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
-      <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Sidenav Left</h1>
-      </md-toolbar>
-    </md-sidenav> -->
 
     <h1 class="md-display-1">豆瓣找房</h1>
 
@@ -52,10 +46,16 @@
       <div>
         <form name="userForm">
           <md-input-container class="md-block">
-            <label>豆瓣租房小组地址</label>
+            <label>豆瓣租房小组ID</label>
             <input ng-model="search.url">
-    <!--         <div class="hint"><a href="http://www.douban.com/group/HZhome/">例：http://www.douban.com/group/HZhome/</a></div> -->
+            <div class="hint">例：<code>http://www.douban.com/group/HZhome/</code>的 ID 是 <code>HZhome</code></div>
           </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>搜索页数</label>
+            <input ng-model="search.page" type="number" step="1" min="1">
+          </md-input-container>
+
           <div class="tag-chips md-block">
             <md-chips
               ng-model="search.tags"
@@ -64,40 +64,33 @@
               delete-hint="点击删除关键字"
               secondary-placeholder="+关键字"></md-chips>
           </div>
+
           <div class="tag-chips md-block">
             <md-chips
-              ng-model="search.tags"
+              ng-model="search.excludes"
               placeholder="添加要排除的关键字"
               delete-button-label="删除要排除的关键字"
               delete-hint="点击删除要排除的关键字"
               secondary-placeholder="+要排除的关键字"></md-chips>
           </div>
+
           <md-button class="md-raised md-primary">搜索</md-button>
         </form>
       </div>
     </md-content>
-  <!-- </section> -->
 
 </div>
 
     <script type="text/javascript">
-angular
-  .module('MyApp',['ngMaterial', 'ngMessages'])
-  .controller('DemoCtrl', function($scope) {
-    $scope.search = {
-      url: '',
-      tags: ['文一西路']
-    };
-  })
-  .config(function($mdThemingProvider) {
-
-    // Configure a dark theme with primary foreground yellow
-
-    // $mdThemingProvider.theme('default')
-    // .primaryPalette('cyan')
-    // .accentPalette('orange');
-
-  });
+    angular
+      .module('MyApp',['ngMaterial', 'ngMessages'])
+      .controller('DemoCtrl', function($scope) {
+        $scope.search = {
+          url: '',
+          tags: ['文一西路'],
+          excludes: ['垃圾街']
+        };
+      });
 
 
     </script>

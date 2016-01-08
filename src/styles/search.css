@@ -1,0 +1,34 @@
+body, input, div {
+  font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB",STHeiti,"Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+}
+input {
+  font: inherit;
+}
+
+button {
+  color: white;
+}
+
+.tag-chips {
+  margin: 18px 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+.app {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+code {
+  background: #f7f7f7;
+  color: #455a64;
+  padding: 1px 4px;
+  font-family: "Source Code Pro", Monaco, Menlo, Consolas, "Courier New", monospace;
+}
+
+.hint {
+  line-height: 40px;
+}
