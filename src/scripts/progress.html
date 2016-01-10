@@ -1,0 +1,20 @@
+<md-dialog aria-label="progress">
+  <md-dialog-content class="progress-content">
+    <div ng-show="!finished">
+      <p class="progress-page" ng-show="page">
+        爬取第 {{page}} 页...
+      </p>
+      <p class="progress-link" ng-show="link">
+        爬取 <a class="progress-anchor" href="{{link.href}}">{{link.title}}</a>...
+      </p>
+    </div>
+    <div class="progress-done" ng-show="finished">
+      爬取完毕
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions class="progress-actions" ng-show="finished" layout="row">
+    <md-button ng-click="seeAll()" >
+      查看结果
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

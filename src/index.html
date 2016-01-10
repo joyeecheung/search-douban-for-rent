@@ -8,54 +8,17 @@
     <link rel="stylesheet" type="text/css" href="./styles/search.css">
 
     <script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="../node_modules/angular-animate/angular-animate.js"></script>
     <script type="text/javascript" src="../node_modules/angular-aria/angular-aria.js"></script>
     <script type="text/javascript" src="../node_modules/angular-messages/angular-messages.js"></script>
     <script type="text/javascript" src="../node_modules/angular-material/angular-material.js"></script>
   </head>
 
-  <body ng-controller="SearchCtrl" ng-app="Search">
-    <div layout="column" ng-cloak class="app">
-      <h1 class="md-display-1">豆瓣找房</h1>
-
-      <md-content layout-padding>
-        <div>
-          <form name="userForm">
-            <md-input-container class="md-block">
-              <label>豆瓣租房小组ID</label>
-              <input ng-model="search.groupId" required>
-              <div class="hint">例：<code>http://www.douban.com/group/HZhome/</code>的 ID 是 <code>HZhome</code></div>
-            </md-input-container>
-
-            <md-input-container class="md-block">
-              <label>搜索页数</label>
-              <input ng-model="search.page" type="number" step="1" min="1" required>
-            </md-input-container>
-
-            <div class="tag-chips md-block">
-              <md-chips
-                ng-model="search.includes"
-                placeholder="添加关键字"
-                delete-button-label="删除关键字"
-                delete-hint="点击删除关键字"
-                secondary-placeholder="+关键字"></md-chips>
-            </div>
-
-            <div class="tag-chips md-block">
-              <md-chips
-                ng-model="search.excludes"
-                placeholder="添加要排除的关键字"
-                delete-button-label="删除要排除的关键字"
-                delete-hint="点击删除要排除的关键字"
-                secondary-placeholder="+要排除的关键字"></md-chips>
-            </div>
-
-            <md-button class="md-raised md-primary" ng-click="submit(search)">搜索</md-button>
-          </form>
-        </div>
-      </md-content>
-    </div>
+  <body ng-app="Search">
+    <div ui-view></div>
 
     <script type="text/javascript" src="./scripts/search.js"></script>
+    <script type="text/javascript" src="./scripts/menu.js"></script>
   </body>
 </html>

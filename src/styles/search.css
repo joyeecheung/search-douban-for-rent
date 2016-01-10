@@ -32,3 +32,32 @@ code {
 .hint {
   line-height: 40px;
 }
+
+.progress-link {
+  margin: 2em 2.8em;
+  font-size: 90%;
+}
+
+.progress-page,
+.progress-done {
+  margin: 2em 2.8em;
+}
+
+a {
+  color: #03a9f4;
+  text-decoration: none;
+}
+
+.progress-done {
+  text-align: center;
+}
+
+.progress-content {
+  min-width: 400px;
+  max-width: 700px;
+  min-height: 50px;
+}
+
+.results.button {
+  width: 100%;
+}

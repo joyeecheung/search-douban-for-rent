@@ -1,0 +1,48 @@
+<section layout="row" flex>
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
+    <md-toolbar class="">
+      <div class="md-toolbar-tools">搜索结果</div>
+    </md-toolbar>
+    <md-content>
+      <md-list>
+        <md-list-item ng-click="navigate(result)" ng-repeat="result in results track by result.id | orderBy:'date':reverse">
+          {{result.title}}
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </md-sidenav>
+  <md-content layout-padding flex="grow">
+    <md-fab-toolbar md-direction="left">
+    <md-fab-trigger class="align-with-text">
+      <md-button aria-label="menu" class="md-fab md-primary">
+        menu
+        <!--<md-icon md-svg-src="img/icons/menu.svg"></md-icon>-->
+      </md-button>
+    </md-fab-trigger>
+    <md-toolbar>
+      <md-fab-actions class="md-toolbar-tools">
+        <md-button ng-click="back()" aria-label="home" class="md-icon-button">
+          back
+          <!--<md-icon md-svg-src="img/icons/ic_comment_24px.svg"></md-icon>-->
+        </md-button>
+      </md-fab-actions>
+    </md-toolbar>
+  </md-fab-toolbar>
+    <md-card ng-repeat="result in results track by result.id | orderBy:'date':reverse">
+      <md-card-header>
+        <md-card-header-text>
+          <a class="md-title" href="{{result.link}}" ng-click="clickResult($event, result)">{{result.link}}</a>
+          <span class="md-subhead">{{result.date | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+        </md-card-header-text>
+      </md-card-header>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">{{result.title}}</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <div ng-bind-html="result.content | sanitize"></div>
+      </md-card-content>
+    </md-card>
+  </md-content>
+</section>
