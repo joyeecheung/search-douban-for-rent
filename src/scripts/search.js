@@ -73,6 +73,9 @@ angular
       }
     };
   })
+  .filter('isNumber', function() {
+    return angular.isNumber;
+  })
   .controller('DialogCtrl', ['$scope', '$rootScope', '$mdDialog', 'BusService',
     function($scope, $rootScope, $mdDialog, BusService) {
       $scope.finished = false;

@@ -1,7 +1,7 @@
 <md-dialog aria-label="progress">
   <md-dialog-content class="progress-content">
     <div ng-show="!finished">
-      <p class="progress-page" ng-show="page">
+      <p class="progress-page" ng-show="page | isNumber ">
         爬取第 {{page}} 页...
       </p>
       <p class="progress-link" ng-show="link">
