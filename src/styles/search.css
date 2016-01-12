@@ -61,3 +61,32 @@ a {
 .results.button {
   width: 100%;
 }
+
+body, html {
+  height: 100%;
+}
+
+.results {
+  height: 100%;
+  overflow: auto;
+  position: fixed;
+}
+
+md-list-item, md-list-item .md-list-item-inner {
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.results-sidebar,
+.results-content {
+  height: 100%;
+  overflow: auto;
+}
+
+.results .fab {
+  position: fixed;
+  right: 2em;
+  bottom: 2em;
+}
