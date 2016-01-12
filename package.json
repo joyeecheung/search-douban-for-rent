@@ -19,6 +19,7 @@
     "angular-material": "^1.0.1",
     "angular-messages": "^1.4.8",
     "angular-sanitize": "^1.4.8",
+    "angular-scroll": "^1.0.0",
     "angular-ui-router": "^1.0.0-alpha0",
     "cheerio": "^0.19.0",
     "co": "^4.6.0",

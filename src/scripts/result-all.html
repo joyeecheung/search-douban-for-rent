@@ -11,26 +11,14 @@
       </md-list>
     </md-content>
   </md-sidenav>
-  <md-content class="results-content" layout-padding flex="grow">
+  <md-content id="results-content" class="results-content" layout-padding flex="grow">
     <md-fab-trigger class="fab">
       <md-button aria-label="menu" ng-click="back()" class="md-fab md-primary">
         Back
         <!-- <md-icon md-svg-src="img/icons/menu.svg"></md-icon> -->
       </md-button>
     </md-fab-trigger>
-<!--       <md-fab-actions>
-        <md-button aria-label="Twitter" class="md-fab md-raised md-mini">
-          <md-icon md-svg-src="img/icons/twitter.svg" aria-label="Twitter"></md-icon>
-        </md-button>
-        <md-button aria-label="Facebook" class="md-fab md-raised md-mini">
-          <md-icon md-svg-src="img/icons/facebook.svg" aria-label="Facebook"></md-icon>
-        </md-button>
-        <md-button aria-label="Google Hangout" class="md-fab md-raised md-mini">
-          <md-icon md-svg-src="img/icons/hangout.svg" aria-label="Google Hangout"></md-icon>
-        </md-button>
-      </md-fab-actions> -->
-    </md-fab-speed-dial>
-    <md-card ng-repeat="result in results track by result.id | orderBy:'date':reverse">
+    <md-card ng-repeat="result in results track by result.id | orderBy:'date':reverse" id="{{result.id}}">
       <md-card-header>
         <md-card-header-text>
           <a class="md-title" href="{{result.link}}" ng-click="clickResult($event, result)">{{result.link}}</a>

@@ -8,7 +8,7 @@ const storage = require('../lib/storage');
 const clipboard = require('electron').clipboard;
 
 angular
-  .module('Search',['ngMaterial', 'ngMessages', 'ui.router'])
+  .module('Search',['ngMaterial', 'ngMessages', 'duScroll', 'ui.router'])
   .factory('StorageService', [function() {
     return {
       init: function(hash) {
@@ -156,8 +156,13 @@ angular
     } catch (e) {
       $state.go('index');
     }
-    $scope.navigate = function(result) {
 
+    $scope.navigate = function(result) {
+      let content = document.getElementById('results-content');
+      let $content = angular.element(content);
+      let card = document.getElementById(result.id);
+      let $card = angular.element(card);
+      $content.scrollToElement($card, 0, 600);
     }
 
     $scope.back = function() {
