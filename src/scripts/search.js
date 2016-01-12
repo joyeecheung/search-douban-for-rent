@@ -25,6 +25,7 @@ angular
         return keys.map(key => this.getItem(key));
       },
       getItem: storage.getItem,
+      setItem: storage.setItem,
       storage: storage
     };
   }])
@@ -63,6 +64,15 @@ angular
       }
     }
   }])
+  .directive('fileChange', function() {
+    return {
+      restrict: 'EA',
+      link: function (scope, element, attrs) {
+        var onChangeHandler = scope.$eval(attrs.fileChange);
+        element.bind('change', onChangeHandler);
+      }
+    };
+  })
   .controller('DialogCtrl', ['$scope', '$rootScope', '$mdDialog', 'BusService',
     function($scope, $rootScope, $mdDialog, BusService) {
       $scope.finished = false;
@@ -72,21 +82,21 @@ angular
 
       $rootScope.$on('crawl-topic:start', function(e, link) {
         $scope.link = link;
-        $scope.$digest();
+        $scope.$apply();
       });
 
       $rootScope.$on('crawl-page:start', function(e, page) {
         $scope.page = page;
-        $scope.$digest();
+        $scope.$apply();
       });
 
       $rootScope.$on('crawl-page:done', function(e, page, results) {
         $scope.results = results;
-        $scope.$digest();
+        $scope.$apply();
       });
       $rootScope.$on('crawl-all:done', function(e, hash) {
         $scope.finished = true;
-        $scope.$digest();
+        $scope.$apply();
       });
 
       $scope.seeAll = function() {
@@ -96,37 +106,53 @@ angular
   .controller('SearchCtrl',
     ['$scope', '$rootScope', '$state', '$mdDialog', 'CrawlService', 'StorageService', 'BusService',
     function($scope, $rootScope, $state, $mdDialog, CrawlService, StorageService, BusService) {
-    $scope.search = {
-      groupId: 'HZhome',
-      page: 20,
-      includes: ['西城广场', '文二西路', '文三西路'],
-      excludes: ['翠苑']
+
+    if (!StorageService.getItem('search')) {
+      $scope.search = {
+        groupId: 'HZhome',
+        page: 20,
+        includes: ['西城广场', '文二西路', '文三西路'],
+        excludes: ['翠苑']
+      };
+    } else {
+      $scope.search = Object.assign({},
+        StorageService.getItem('search'));
+    }
+
+
+    $scope.parseFile = function(event){
+        var files = event.target.files;
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          var config = JSON.parse(e.target.result);
+          $scope.search = config;
+          StorageService.setItem('search', config);
+          $scope.$apply();
+        };
+        reader.readAsText(files[0]);
     };
 
     $scope.submit = function($event, search) {
       $scope.finished = false;
       // switch router
       let hash = hashTask(search.groupId, search.includes, search.excludes);
+      StorageService.setItem('search', search);
       StorageService.init(hash);
       BusService.init(hash);
 
       BusService.on('crawl-topic:start', function(link) {
-        console.log('start crawling ' + link.id);
         $rootScope.$broadcast('crawl-topic:start', link);
       });
 
       BusService.on('crawl-page:start', function(page) {
-        console.log('start crawling ' + page);
         $rootScope.$broadcast('crawl-page:start', page);
       });
 
       BusService.on('crawl-page:done', function(page, results) {
-        console.log('done crawling ' + results);
         $rootScope.$broadcast('crawl-page:done', page, results);
       });
 
       BusService.on('crawl-all:done', function(hash) {
-        console.log('done crawling ' + hash);
         $rootScope.$broadcast('crawl-all:done', hash);
       });
 
@@ -144,8 +170,6 @@ angular
 
       CrawlService.crawl(search).then((results) => {
         $scope.finished = true;
-        console.log(results);
-        console.log(StorageService.getAll());
       });
     };
   }])
@@ -184,6 +208,11 @@ angular
       );
     }
   }])
+  .controller("AboutCtrl", ['$scope', '$state', function($scope, $state) {
+    $scope.back = function() {
+      $state.go('index');
+    }
+  }])
   .filter("sanitize", ['$sce', function($sce) {
     return function(htmlCode){
       return $sce.trustAsHtml(htmlCode);
@@ -197,6 +226,11 @@ angular
         url: "/index",
         template: views.get('search.html'),
         controller: 'SearchCtrl'
+      })
+      .state('about', {
+        url: "/about",
+        template: views.get('about.html'),
+        controller: 'AboutCtrl'
       })
       // .state('result-page', {
       //   url: "/result-page",

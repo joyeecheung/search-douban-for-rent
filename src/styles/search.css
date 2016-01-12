@@ -9,6 +9,16 @@ button {
   color: white;
 }
 
+.about {
+  display: block;
+  text-align: center;
+}
+
+.about-page {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
 .tag-chips {
   margin: 18px 0;
 }
@@ -85,7 +95,7 @@ md-list-item, md-list-item .md-list-item-inner {
   overflow: auto;
 }
 
-.results .fab {
+.fab {
   position: fixed;
   right: 2em;
   bottom: 2em;

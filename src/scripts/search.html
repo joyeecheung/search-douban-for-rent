@@ -1,6 +1,6 @@
 <div layout="column" ng-cloak class="app">
   <h1 class="md-display-1">豆瓣找房</h1>
-
+  <a ui-sref="about" class="about">关于</a>
   <md-content layout-padding>
     <div>
       <form name="userForm">
@@ -32,6 +32,14 @@
             delete-hint="点击删除要排除的关键字"
             secondary-placeholder="+要排除的关键字"></md-chips>
         </div>
+
+        <md-input-container class="md-block">
+          <md-button>
+            <label for="file-input" class="md-container-ignore" style="cursor: pointer; width: 100%">导入配置</label>
+          </md-button>
+          <input id="file-input" type="file" file-change="parseFile" style="display: none" aria-label="config">
+          <div class="hint">（可选：导入配置.json文件）</div>
+        </md-input-container>
 
         <md-button class="md-raised md-primary" ng-click="submit($event, search)">搜索</md-button>
       </form>
