@@ -5,7 +5,7 @@
     </md-toolbar>
     <md-content>
       <md-list>
-        <md-list-item ng-click="navigate(result)" ng-repeat="result in results track by result.id | orderBy:'date'">
+        <md-list-item ng-click="navigate(result)" ng-repeat="result in results | orderBy:'-date' track by result.id">
           {{result.title}}
         </md-list-item>
       </md-list>
@@ -17,7 +17,7 @@
         Back
       </md-button>
     </md-fab-trigger>
-    <md-card ng-repeat="result in results track by result.id | orderBy:'date'" id="{{result.id}}">
+    <md-card ng-repeat="result in results | orderBy:'-date' track by result.id" id="{{result.id}}">
       <md-card-header>
         <md-card-header-text>
           <a class="md-title" href="{{result.link}}" ng-click="clickResult($event, result)">{{result.link}}</a>

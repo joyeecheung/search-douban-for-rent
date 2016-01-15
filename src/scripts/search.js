@@ -167,7 +167,7 @@ angular
         clickOutsideToClose: false
       }).then(function(action) {
         if (action === 'see-all') {
-          $state.go('result-all');
+          $state.go('result-all', {hash: hash});
         }
       });
 
@@ -176,9 +176,12 @@ angular
       });
     };
   }])
-  .controller('ResultAllCtrl', ['$scope', '$state', '$mdToast',  'StorageService', 'BusService',
-    function($scope, $state, $mdToast, StorageService, BusService) {
+  .controller('ResultAllCtrl', ['$scope', '$state', '$stateParams', '$mdToast',  'StorageService', 'BusService',
+    function($scope, $state, $stateParams, $mdToast, StorageService, BusService) {
     try {
+      if ($stateParams.hash) {
+        StorageService.init($stateParams.hash);
+      }
       $scope.results = StorageService.getAll();
     } catch (e) {
       $state.go('index');
@@ -241,7 +244,7 @@ angular
       //   controller: 'ResultPageCtrl'
       // })
       .state('result-all', {
-        url: "/result-all",
+        url: "/result-all/:hash",
         template: views.get('result-all.html'),
         controller: 'ResultAllCtrl'
       });
