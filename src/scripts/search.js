@@ -213,6 +213,7 @@ angular
           .hideDelay(3000)
       );
     }
+
   }])
   .controller("AboutCtrl", ['$scope', '$state', function($scope, $state) {
     $scope.back = function() {
